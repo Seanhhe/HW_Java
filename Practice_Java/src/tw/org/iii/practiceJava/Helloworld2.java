@@ -3,7 +3,7 @@ package tw.org.iii.practiceJava;
 public class Helloworld2 {
 
 	public static void main(String[] args) {
-		// TODO Todo ¥i¦btasks¥\¯àÃş¦ü§Ö±¶Áä¤è¦¡¨Ï¥Î
+		// TODO Todo åœ¨Tasksè¡¨å–®ä¸­å¯ä»¥çœ‹åˆ°, å¯ä»¥å¿«é€Ÿé€£çµåˆ°é€™è£¡.
 		System.out.println("Hello, world2");
 
 	}
