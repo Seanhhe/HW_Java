@@ -108,6 +108,8 @@ public class Reviewed009 {
 		
 		System.out.println("--------------");
 		
+		//	二進位運算-->影像應用
+		
 		//	JAVA 兩種結尾方式=> 分號/ 大括號的程式區塊
 		
 			if (a >=10);
