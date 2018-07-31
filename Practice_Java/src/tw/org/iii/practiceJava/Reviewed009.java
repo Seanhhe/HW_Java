@@ -75,13 +75,40 @@ public class Reviewed009 {
 		
 		System.out.println("--------------");
 		
-//		| / & OR/ AND-->二進位運算
+		//		| / & OR/ AND-->二進位運算 (位元運算)
 		
-//		^ --> XOR 二進位運算
+		/*
+		 * 	位元運算-->逐位元運算
+		 * 	真值表
+		 */
+		
+		System.out.println(" AND 運算");
+		System.out.println("0 & 0" + "=" + (0 & 0));
+		System.out.println("1 & 0" + "=" + (1 & 0));
+		System.out.println("0 & 1" + "=" + (0 & 1));
+		System.out.println("1 & 1" + "=" + (1 & 1));
+		
+		System.out.println("**********");
+		
+		System.out.println(" OR 運算");
+		System.out.println("0 | 0" + "=" + (0 | 0));
+		System.out.println("1 | 0" + "=" + (1 | 0));
+		System.out.println("0 | 1" + "=" + (0 | 1));
+		System.out.println("1 | 1" + "=" + (1 | 1));
+		
+		System.out.println("**********");
+		
+		
+		//	^ --> XOR 二進位運算
+		System.out.println(" XOR 運算");
+		System.out.println("0 ^ 0" + "=" + (0 ^ 0));
+		System.out.println("1 ^ 0" + "=" + (1 ^ 0));
+		System.out.println("0 ^ 1" + "=" + (0 ^ 1));
+		System.out.println("1 ^ 1" + "=" + (1 ^ 1));
 		
 		System.out.println("--------------");
 		
-//		JAVA 兩種結尾方式=> 分號/ 大括號的程式區塊
+		//	JAVA 兩種結尾方式=> 分號/ 大括號的程式區塊
 		
 			if (a >=10);
 			{
