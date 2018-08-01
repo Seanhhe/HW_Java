@@ -40,12 +40,12 @@ public class Reviewed018_Dice {
 		if (e > 0) {
 			System.out.println("Bug: " + e);
 		} else {
-			System.out.println("Dot1: " + d1 + "times");
-			System.out.println("Dot2: " + d2 + "times");
-			System.out.println("Dot3: " + d3 + "times");
-			System.out.println("Dot4: " + d4 + "times");
-			System.out.println("Dot5: " + d5 + "times");
-			System.out.println("Dot6: " + d6 + "times");
+			System.out.println("Dot1: " + d1 + " times");
+			System.out.println("Dot2: " + d2 + " times");
+			System.out.println("Dot3: " + d3 + " times");
+			System.out.println("Dot4: " + d4 + " times");
+			System.out.println("Dot5: " + d5 + " times");
+			System.out.println("Dot6: " + d6 + " times");
 		}
 
 		System.out.println("------------");
@@ -79,56 +79,65 @@ public class Reviewed018_Dice {
 			}
 		}
 		if (dots[0] == 0) {
-			for (int j=1; j<dots.length;j++ ) {
-				System.out.println("Dots"+j+":"+dots[j]+"times");
+			for (int j = 1; j < dots.length; j++) {
+				System.out.println("Dots" + j + ":" + dots[j] + " times");
 			}
-		}else {
-			System.out.println("BUG"+ dots[0]);
+		} else {
+			System.out.println("BUG" + dots[0]);
 		}
-		
+
 		System.out.println("-----Ver.3 提高正確率-------");
-		
+
 		// Version3_Arrays + 提高正確機率 (擲10000次)
 		int[] dice = new int[7];
 
 		for (int i = 0; i < 100000; i++) {
 			int point = (int) (Math.random() * 6) + 1;
 			// 看完老師的, 原來這段可以改這樣啊~
-			if (point >=1 && point <=6) { //	確保點數沒有錯
-				dice[point]++;	//因為點數數字與Index位置數字一樣
-			}else {
-				dice[0]++; 	//bug次數記錄
+			if (point >= 1 && point <= 6) { // 確保點數沒有錯
+				dice[point]++; // 因為點數數字與Index位置數字一樣
+			} else {
+				dice[0]++; // bug次數記錄
 			}
 		}
 		if (dice[0] == 0) {
 			for (int j = 1; j < dice.length; j++) {
-				System.out.println("Dots" + j + ":" + dice[j] + "times");
+				System.out.println("Dots" + j + ":" + dice[j] + " times"+"Ver.3");
 			}
 		} else {
 			System.out.println("BUG" + dice[0]);
 		}
-		
+
 		System.out.println("----Ver.4 提高部分點數機率------");
+
+		// Version4_Arrays(提高4,5,6點機率)
 		
-//		// Version4_Arrays(提高4,5,6點機率)
-//				int[] dice = new int[7];
-//
-//				for (int i = 0; i < 100; i++) {
-//					int point = (int) (Math.random() * 6) + 1;
-//					// 看完老師的, 原來這段可以改這樣啊~
-//					if (point >=1 && point <=6) { //	確保點數沒有錯
-//						dice[point]++;	//因為點數數字與Index位置數字一樣
-//					}else {
-//						dice[0]++; 	//bug次數記錄
-//					}
-//				}
-//				if (dice[0] == 0) {
-//					for (int j = 1; j < dice.length; j++) {
-//						System.out.println("Dots" + j + ":" + dice[j] + "times");
-//					}
-//				} else {
-//					System.out.println("BUG" + dice[0]);
-//				}
+		/*
+		 *	如何提高機率?
+		 *	平分機率至九份
+		 *	把多的三份分到4,5,6點
+		 *	點數: 1	2	3	4	5	6
+		 *	機率:1/9 1/9 1/9 2/9 2/9 2/9
+		 */
+		
+		int[] dice2 = new int[7];
+
+		for (int i = 0; i < 10000; i++) {
+			int point = (int) (Math.random() * 9) + 1;
+			// 看完老師的, 原來這段可以改這樣啊~
+			if (point >= 1 && point <= 9) { // 確保點數沒有錯
+				dice2[point>6?point-3:point]++; // 大於六的點數加到456點
+			} else {
+				dice2[0]++; // bug次數記錄
+			}
+		}
+		if (dice2[0] == 0) {
+			for (int j = 1; j < dice2.length; j++) {
+				System.out.println("Dots" + j + ":" + dice2[j] + " times"+"Ver.4");
+			}
+		} else {
+			System.out.println("BUG" + dice[0]);
+		}
 
 	}
 
