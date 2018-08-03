@@ -125,5 +125,8 @@ public class Reviewed024_TWid {
 		}else {
 			System.out.println("ID2 ng");
 		}
+		
+		
+		
 	}
 }

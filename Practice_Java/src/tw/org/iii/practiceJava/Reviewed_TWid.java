@@ -5,7 +5,16 @@ public class Reviewed_TWid {
 	 * 	身份證字號產生器&驗證器
 	 * 	身份證字號物件
 	 * 	屬性:id
+	 * 	
+	 * 	設計流程:
 	 * 
+	 * 	1. 先決定需要什麼功能
+	 * 	2. 建立屬性
+	 * 	3. 確定初始化-->建構式要做什麼
+	 * 	4. 方法建立-->怎麼檢查ID
+	 * 	5. 產生的ID要都先經過檢查
+	 * 	6. 建構式產生時就要產生新ID
+	 * 	7.
 	 */
 	
 	/*	從使用者觀點下手, 需要甚麼樣的功能/方法
@@ -14,10 +23,10 @@ public class Reviewed_TWid {
 	
 	/*	static 關鍵字
 	 * 	1. 不屬於任何一個物件, 是該類別所擁有的. (書上的講法)
-	 * 	2. 是屬於這個類別(級別)可以呼叫的 [只是為了分類的要求]
+	 * 	2. 是屬於這個類別(級別)可以呼叫的 [只是為了分類的要求 例如像是random 是分類在Math裡面]
 	 * 	3. 是個功能性的東西, 與物件無關.
 	 * 	4. static 裡面不會有該類別所在的物件存在
-	 * 	5. 物件可以呼叫static方法
+	 * 	5. 物件可以呼叫static方法 (物件存在該類別就存在囉)
 	 * 	6. static方法只能呼叫static方法
 	 */
 	
@@ -44,7 +53,7 @@ public class Reviewed_TWid {
 	static final String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
 	static final String numChars = "0123456789";	// for method: checkId2
 	
-	// 建構式
+	// 	建構式 (物件的初始化)
 	//	只有這四招可以產生身分證(自動產生)
 	//	但若讓使用者直接存取 TWid(String id) {this.id = id;}
 	//	已完成初始化, 所以無法驗證.
@@ -68,6 +77,7 @@ public class Reviewed_TWid {
 	Reviewed_TWid(boolean isMale, int area) {
 		String i1 = letters.substring(area,area+1);	// 這裡輸入的整數不是轉換字元 超過會有bug?
 		String i2 = isMale?"1":"2";
+		
 		
 /*		// 寫法一
  * 		String newId = i1 + i2 +
@@ -107,7 +117,7 @@ public class Reviewed_TWid {
 	
 	
 	
-	// 方法_身分證驗證法1
+	// 方法_身分證驗證法1 (加上static 可以讓別人單獨呼叫他-->使用者輸入id檢查)
 	static boolean checkId(String id) { 
 		boolean isCorrect = false;
 		if (id.matches("^[A-Z][12][0-9]{8}$")) {
