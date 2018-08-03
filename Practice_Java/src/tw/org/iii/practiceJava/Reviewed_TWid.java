@@ -191,7 +191,7 @@ public class Reviewed_TWid {
 	// 方法_回傳新身分證字號 (因為建構式本身沒有回傳, 所以要透過static方法才能回傳新的id字串)
 	static Reviewed_TWid createTWid(String id) {	// 型別是物件型別?
 		if (checkId(id)) { 	//	確認產生的id合格
-			return new Reviewed_TWid(id); // 回傳新的id
+			return new Reviewed_TWid(id); // 回傳新的id物件
 		}else {
 			return null;
 		}
