@@ -20,8 +20,12 @@ public class Reviewed024_TWid2 {
 		
 		System.out.println(Reviewed_TWid2.checkId("A123456780"));
 		
+		/*Reviewed_TWid2 id6 = Reviewed_TWid2.createId("A123456789");
+		System.out.println(id6.getId());
+		*/
 		
-		
+		Reviewed_TWid2 id2 = new Reviewed_TWid2(12,true);
+		System.out.println(Reviewed_TWid2.checkId(id2.getId()));
 		
 	}
 }

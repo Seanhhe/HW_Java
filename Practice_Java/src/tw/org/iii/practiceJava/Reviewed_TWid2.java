@@ -39,13 +39,14 @@ public class Reviewed_TWid2 {
 		String a2 = isMale?"1":"2";
 		
 		String newId = a1.concat(a2)
-				.concat(String.valueOf((int)(Math.random()*10)))
+				.concat(String.valueOf((int)(Math.random()*10))) //	valueOf(int i) Returns the string representation of the int argument.
 				.concat(String.valueOf((int)(Math.random()*10)))
 				.concat(String.valueOf((int)(Math.random()*10)))
 				.concat(String.valueOf((int)(Math.random()*10)))
 				.concat(String.valueOf((int)(Math.random()*10)))
 				.concat(String.valueOf((int)(Math.random()*10)))
 				.concat(String.valueOf((int)(Math.random()*10)));
+		//	檢查碼
 		for (int i=0; i <=9;i++) {
 			if (checkId(newId+i)) {
 				this.id = newId+i;
@@ -56,7 +57,7 @@ public class Reviewed_TWid2 {
 	
 	//	Methods
 	
-	// 驗證
+	// 	驗證
 	static boolean checkId(String id) {
 		boolean isCorrect = false;
 		if (id.matches("^[A-Z][12][0-9]{8}$")) {	// matches the format
@@ -80,10 +81,23 @@ public class Reviewed_TWid2 {
 		return isCorrect;
 	}
 
-	// 使用者讀取
+	// 	使用者讀取
 	String getId() {
 		return this.id;
 	}
 	
+	//	把產生的ID透過static方法回傳
+	static Reviewed_TWid2 createId(String id) {
+		if (checkId(id)) {
+			return new Reviewed_TWid2(id);	// 呼叫下面的private
+		}else {
+			return null;
+		}
+	}
+	
+	// 建立Reviewed_TWid2方法給內部呼叫
+	private Reviewed_TWid2(String id) {
+		this.id = id;
+	}
 	
 }
