@@ -7,7 +7,7 @@ public class Reviewed024_TWid {
 		 * 
 		 */
 		
-//			static 練習
+//		//	static 練習
 //		Reviewed_TWid.checkId("123");
 ////		Reviewed_TWid.m1("123");
 //		
@@ -109,7 +109,7 @@ public class Reviewed024_TWid {
 		Reviewed_TWid id3 = new Reviewed_TWid(true);
 		System.out.println(id3.getId()+" "+id3.gender()+" "+id3.showArea());
 		
-		Reviewed_TWid id4 = new Reviewed_TWid(19);
+		Reviewed_TWid id4 = new Reviewed_TWid(10);
 		System.out.println(id4.getId()+" "+id4.gender()+" "+id4.showArea());
 		
 		Reviewed_TWid id5 = new Reviewed_TWid();
@@ -118,5 +118,12 @@ public class Reviewed024_TWid {
 		Reviewed_TWid id6 = Reviewed_TWid.createTWid("A123456789");
 		System.out.println(id6.getId()+" "+id6.gender()+" "+id6.showArea());
 		
+		
+		
+		if (Reviewed_TWid.checkId2("A123456780")==true) {
+			System.out.println("ID2 correct");
+		}else {
+			System.out.println("ID2 ng");
+		}
 	}
 }

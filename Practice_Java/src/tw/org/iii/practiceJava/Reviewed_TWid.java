@@ -42,6 +42,7 @@ public class Reviewed_TWid {
 	// 屬性
 	private String id;
 	static final String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
+	static final String numChars = "0123456789";	// for method: checkId2
 	
 	// 建構式
 	//	只有這四招可以產生身分證(自動產生)
@@ -65,7 +66,7 @@ public class Reviewed_TWid {
 	}
 	
 	Reviewed_TWid(boolean isMale, int area) {
-		String i1 = letters.substring(area,area+1);
+		String i1 = letters.substring(area,area+1);	// 這裡輸入的整數不是轉換字元 超過會有bug?
 		String i2 = isMale?"1":"2";
 		
 /*		// 寫法一
@@ -138,12 +139,32 @@ public class Reviewed_TWid {
 		boolean isRight = false;
 		if (id.length() == 10) {
 			if ( letters.indexOf(id.charAt(0)) >= 0) {	// 比對字串,是否有在裡面 (沒有會回傳-1)
-				System.out.println("OK1");	
+				if (id.charAt(1)=='1' || id.charAt(1)== '2') {	// third digit-->1 or 2
+					for (int i = 2; i <= 9; i++)	{
+						for (int j=0; j<=9; j++) {
+							if (id.charAt(i)==numChars.charAt(j)) {	// other eight digit pass --> allpass
+								// formula test
+								int n12 = letters.indexOf(id.charAt(0))+10; //轉換字元
+								int n1 = n12 / 10;
+								int n2 = n12 % 10;
+								//	把字串變整數
+								int n3 = Integer.parseInt(id.substring(1,2));
+								int n4 = Integer.parseInt(id.substring(2,3));
+								int n5 = Integer.parseInt(id.substring(3,4));
+								int n6 = Integer.parseInt(id.substring(4,5));
+								int n7 = Integer.parseInt(id.substring(5,6));
+								int n8 = Integer.parseInt(id.substring(6,7));
+								int n9 = Integer.parseInt(id.substring(7,8));
+								int n10 = Integer.parseInt(id.substring(8,9));
+								int n11 = Integer.parseInt(id.substring(9,10));
+								int sum = n1*1+n2*9+n3*8+n4*7+n5*6+n6*5+n7*4+n8*3+n9*2+n10*1+n11*1; 
+								isRight = sum % 10 == 0;
+							}
+						}
+					}
+				}
 			}
- 		}else {	
-			System.out.println("False");
-		}
-		
+ 		}
 		return isRight;
 	}
 	
