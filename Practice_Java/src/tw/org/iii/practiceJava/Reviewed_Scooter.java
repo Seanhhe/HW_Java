@@ -1,0 +1,27 @@
+package tw.org.iii.practiceJava;
+/*
+ * 	20180804AM1 繼承 extends
+ * 	
+ * 	> 把父類別發揚光大
+ * 	> extends 就是延伸擴大
+ * 	> 好事發揚光大, 壞事拋出意外
+ * 	
+ * 	> 任何類別都只會有一個父類別, 且都有一個父類別(只是有無宣告)
+ *  > 如果沒對外宣稱(寫)extends 預設的父類別為 java.Object
+ *  
+ *  > 繼承那些東西呢?
+ *  > 可繼承
+ *  > 1. 屬性
+ *  > 2. 方法
+ *  > 不可繼承
+ *  > 1. private
+ *  > 2. 建構式 (不是一個類別物件所擁有的, 只是用來初始化)
+ */
+
+public class Reviewed_Scooter extends Reviewed_Bike{
+	
+	@Override
+	double getSpeed() {
+		return speed+2; // 要父類別開放speed才可用
+	}
+}

@@ -11,7 +11,7 @@ package tw.org.iii.practiceJava; //執行環境所在的實體"路徑"
 public class Reviewed_Bike {
 	
 	//	宣告屬性 (宣告private限制其存取範圍)
-	private double speed;
+	double speed;
 	
 	//	建構式
 	Reviewed_Bike() { // 建構式的初始化.
