@@ -20,7 +20,7 @@ public class Reviewed027 {
 		// 為什麼兩個都是false?
 		System.out.println(b2.equals(b5)); // <--這裡的equals是Object的方法, 與String.equals不同
 		System.out.println(b2 == b5);
-		
+		System.out.println(b2.isSame(b5));
 		
 	}
 
@@ -42,15 +42,24 @@ class Reviewed0271 {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.lang.Object#equals(java.lang.Object) 改寫的存取修飾字需要大於或等於被改寫的父類別方法
+	 * @see java.lang.Object#equals(java.lang.Object) 
+	 * Override改寫的存取修飾字需要大於或等於被改寫的父類別方法
 	 * -->發揚光大
 	 * 
 	 */
 	
-	@Override
-	public boolean equals(Object arg0) {
-		// TODO Auto-generated method stub
-		return super.equals(arg0);
+//	@Override	// notation for compiler
+//	public boolean equals(Object obj) {	// 存取修飾字要大於等於原被改寫的方法
+//		return ((Reviewed0271)obj).getA() == a; //	(Reviewed0271)obj  強迫轉型
+//	}
+	
+	public int getA() {	// 因為屬性a被封裝, 所以用public方法存取a
+		return a;
+	}
+	
+	// 不Override equals-->自創
+	public boolean isSame(Reviewed0271 obj) {
+		return this.getA() == a;
 	}
 }
 
@@ -75,6 +84,8 @@ class Reviewed0272 extends Reviewed0271 {
 //		super();	// 第一道敘述句如果不寫,其實有隱含super();在裡面
 		super(3);	// super();永遠寫在建構式的第一道敘述句->先處理父類別的建構式. (父類別有傳參數建構式)
 	}
+	
+	
 }
 
 class Reviewed0273 extends Reviewed0272 {
