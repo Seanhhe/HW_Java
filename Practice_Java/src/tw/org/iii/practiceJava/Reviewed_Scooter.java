@@ -19,9 +19,25 @@ package tw.org.iii.practiceJava;
  */
 
 public class Reviewed_Scooter extends Reviewed_Bike{
+	private int gear;
 	
 	@Override
 	double getSpeed() {
 		return speed+2; // 要父類別開放speed才可用
+	}
+	
+	void changeGear(int gear) {
+		this.gear = gear;
+	}
+	
+	int getGear() {
+		return this.gear;
+	}
+	
+	@Override
+	void upSpeed() {
+		// 與父類別方法名稱相同 (Override父類別的同名方法, 在基本型別上傳回值要與父類別的方法相同)
+		super.upSpeed();
+		speed *= gear;
 	}
 }

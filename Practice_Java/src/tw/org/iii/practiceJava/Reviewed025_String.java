@@ -1,6 +1,7 @@
 package tw.org.iii.practiceJava;
 
-public class Reviewed026_String {
+public class Reviewed025_String {
+
 	/*	20180804AM1
 	 *  Brad23
 	 *  字串物件_String
@@ -81,5 +82,4 @@ public class Reviewed026_String {
 		System.out.println(s4 == s6);
 		
 	}
-
 }
