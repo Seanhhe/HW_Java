@@ -15,7 +15,14 @@ package tw.org.iii.practiceJava;
  * 	-->反之無法編譯
  * 
  * 
- * 	instanceof => 判斷骨子裡是否為該物件實體
+ * 	instanceof
+ * 	->判斷骨子裡是否為該物件實體
+ * 	-->實際應用分享
+ * 		聯絡人內有分客戶/供應商/...
+ * 		父類別都是聯絡人, 子類別是客戶...
+ * 		先宣告為聯絡人
+ * 		要使用客戶時=> 強制轉型成客戶
+ * 	
  */
 
 
@@ -47,12 +54,24 @@ public class Rev031 {
 		obj3.m2();
 		System.out.println(obj2 == obj3); // 骨子裡真的是一樣的東西
 		
-		// Rev0312 obj4 = (Rev0312)obj1; // Runtime Exception
+		// Rev0312 obj4 = (Rev0312)obj1; // Runtime Exception (可編譯但不能執行)
 		
 		Rev0314 obj5 = new Rev0314();
 		// Rev0312 obj = (Rev0312)obj5; // compiler error 編譯失敗: 因為非父子類別
 		
+		/**20180805AM2 instanceof
+		 * ->比較骨子裡是哪種物件實體
+		 */
 		
+		if (obj1 instanceof Rev0312) {
+			Rev0312 obj4 = (Rev0312)obj1;
+		}else {
+			System.out.println("XX");
+		}
+		
+		// obj1 是不是 Rev0311的物件實體
+		System.out.println(obj1 instanceof Rev0311);
+		System.out.println(obj1 instanceof Rev0312);
 		
 	}
 
