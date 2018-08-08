@@ -144,7 +144,7 @@ public class Reviewed_GuessNum extends JFrame{
 	String checkAB() { // 確認使用者輸入是否有猜對
 		String inputGuess = input.getText();	// 取得使用者輸入的內容
 		int a = 0,b = 0;
-		
+		System.out.println("Input: " + inputGuess);
 		//	檢查每一位數字是否與謎底相同(幾A幾B)
 		//	A=>位置跟數字都對; B=>數字對位置錯
 		
