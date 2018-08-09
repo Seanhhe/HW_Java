@@ -1,8 +1,11 @@
 package tw.org.iii.practiceJava;
 
+import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+//import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 /**	20180805PM2 Brad38 Interface應用_視窗
@@ -12,18 +15,23 @@ import javax.swing.JFrame;
  *
  */
 public class Rev040 extends JFrame {
-
-	
-	
+	private RevMyPanel myPanel;
 	public Rev040() {
+		myPanel = new RevMyPanel(); // 僅產生物件實體
+		add(myPanel, BorderLayout.CENTER);
 		
+		setLayout(new BorderLayout());
 		
+		// 滑鼠事件
+		addMouseListener(new MyClicker());
 		
+		// 關閉視窗 方法二
+		addWindowListener(new MyListener());	
 		
+		// 視窗大小/顯示視窗
 		setSize(640, 480);
 		setVisible(true);
-		// setDefaultCloseOperation(EXIT_ON_CLOSE);
-		addWindowListener(new MyListener());	// 關閉視窗
+		// setDefaultCloseOperation(EXIT_ON_CLOSE); // 關閉視窗方法一
 	}
 	
 	public static void main(String[] args) {
@@ -36,7 +44,7 @@ public class Rev040 extends JFrame {
 /**
  *	不用setDefaultCloseOperation(EXIT_ON_CLOSE);方法關閉視窗
  *	改用下面的方法: WindowListener
- *	但僅需要其中的closin方法
+ *	但僅需要其中的closing方法
  *	改用 class WindowAdapter (implement WindowListener 的抽象類別)
  */
 
@@ -80,8 +88,20 @@ public class Rev040 extends JFrame {
 
 class MyListener extends WindowAdapter { // 關閉視窗第二招
 	// 繼承抽象類別 WindowAdapter並加以實作
+	// 缺點是不能再找父類別繼承
 	@Override
 	public void windowClosing(WindowEvent arg0) {
 		System.exit(0);
+	}
+}
+
+
+// 滑鼠事件
+class MyClicker extends MouseAdapter {
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		super.mouseClicked(e);
+		System.out.println(e.getX());
+		System.out.println(e.getY());
 	}
 }
