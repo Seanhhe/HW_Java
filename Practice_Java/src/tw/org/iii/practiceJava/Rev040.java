@@ -17,10 +17,10 @@ import javax.swing.JFrame;
 public class Rev040 extends JFrame {
 	private RevMyPanel myPanel;
 	public Rev040() {
+		setLayout(new BorderLayout()); // setLayout的順序位置會影響後面add (先set才可add)
+		
 		myPanel = new RevMyPanel(); // 僅產生物件實體
 		add(myPanel, BorderLayout.CENTER);
-		
-		setLayout(new BorderLayout());
 		
 		// 滑鼠事件
 		addMouseListener(new MyClicker());
@@ -96,12 +96,13 @@ class MyListener extends WindowAdapter { // 關閉視窗第二招
 }
 
 
-// 滑鼠事件
-class MyClicker extends MouseAdapter {
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		super.mouseClicked(e);
-		System.out.println(e.getX());
-		System.out.println(e.getY());
-	}
-}
+//// 滑鼠事件
+//class MyClicker extends MouseAdapter {
+//	@Override
+//	public void mouseClicked(MouseEvent e) {
+//		super.mouseClicked(e);
+//		System.out.println(e.getX());
+//		System.out.println(e.getY());
+//		new RevMyPanel();
+//	}
+//}
