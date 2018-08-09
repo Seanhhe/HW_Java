@@ -1,0 +1,167 @@
+package tw.org.iii.practiceJava;
+
+public class Rev035 {
+/**	20180805PM1 Brad33 建構式的特性
+ * 	
+ * 	物件在建構式上到底是如何產生
+ * 	
+ * 	建構式-->你希望產生什麼樣的物件
+ * 	在建構式執行前物件實體早已存在
+ */
+	public static void main(String[] args) {
+		
+		System.out.println("---Static 351---");
+		
+		// Rev0351.m2();
+		
+		System.out.println();
+		
+		System.out.println("---Static---");
+		// static 方法 不用產生物件實體就可呼叫
+		//Rev0352.m2();
+		/**
+		 * 	執行時顯示如下
+		 * 	Rev0351{static} 程式區塊 
+		 * 	Rev0352{static} 程式區塊 
+		 * 	Rev0352: m2()
+		 * 
+		 * 	執行時會先載入父類別的static程式區塊
+		 * 	再執行子類別的static程式區塊&m2方法
+		 * 	->如果做三代, 前兩代的也會做
+		 * 	-->功能被分類再352但是352是繼承351
+		 * 		如果不先產生351 352不會存在
+		 * 	
+		 * 	-> Math.XXX => 全部都是static方法 ==> 工具類別
+		 * 		通常這類的只會有object父類別
+		 */
+
+		System.out.println();
+		
+		System.out.println("----Rev0351----");
+		
+		// Rev0351 obj1 = new Rev0351();
+		
+		/**	先執行父類別object, 再執行程式區塊, 最後做初始化
+		 * 	Rev0351{} 程式區塊
+		 * 	Rev0351: m1()
+		 * 	Rev0351()
+		 * 
+		 * 	--> 建構式是做初始化, 物件在new Rev0351()時早已產生.
+		 * 	---->前面有沒有載入會有差別
+		 */
+		System.out.println();
+		
+		
+		// 
+		System.out.println("----Rev0352 obj2 = new Rev0352();----");
+		
+		// Rev0352 obj2 = new Rev0352();
+		
+		/**(記得先把前面的都先註解) [父類別要在子類別才在]
+		 * 	要載入352物件實體
+		 * 	->先載入程式區塊: 父類別 & 子類別
+		 * 	->再載入
+		 * 
+		 * Rev0351{static} 程式區塊  <--STATIC的程式區塊 (父->子)
+		 * Rev0352{static} 程式區塊 
+		 * 
+		 * Rev0351{} 程式區塊 <--351的程式區塊&初始化
+		 * Rev0352: m1()
+		 * Rev0351() 
+		 * 
+		 * Rev0352{} 程式區塊 <--352的程式區塊 &初始化
+		 * Rev0352()
+		 */
+		
+		
+		System.out.println("----Rev0352 obj2, obj3----");
+		
+		Rev0352 obj2 = new Rev0352();
+		Rev0352 obj3 = new Rev0352();
+		
+		/**	類別是類別 物件是物件
+		 * 	類別只載入一次, 物件就分別載入
+		 * 	
+		 * 	-> static 程式區塊
+		 * 	Rev0351{static} 程式區塊
+		 * 	Rev0352{static} 程式區塊
+		 * 	
+		 * 	-> obj2 父類別的程式區塊與建構式
+		 * 	Rev0351{} 程式區塊
+		 * 	Rev0352: m1()
+		 * 	Rev0351()
+		 * 	
+		 * 	-> obj2 子類別的程式區塊與建構式
+		 * 	Rev0352{} 程式區塊
+		 * 	Rev0352()
+		 * 	
+		 * 	-> obj3 
+		 * 	Rev0351{} 程式區塊
+		 * 	Rev0352: m1()
+		 * 	Rev0351()
+		 * 	
+		 * 	-> obj3
+		 * 	Rev0352{} 程式區塊
+		 * 	Rev0352()
+		 */
+		
+	}
+
+}
+
+class Rev0351 {
+	/** 程式區塊什麼時候執行?
+	 * 	->
+	 */
+	{	// 程式區塊 code block 在類別中同級
+		System.out.println("Rev0351{} 程式區塊");
+		m1();
+	}
+	static {
+		System.out.println("Rev0351{static} 程式區塊");
+		// 因為是static所以無法呼叫m1();
+	}
+	
+	// 建構式
+	Rev0351() {
+		System.out.println("Rev0351()");
+	}
+	
+	
+	// 方法
+	void m1() {
+		System.out.println("Rev0351: m1()");
+	}
+	
+	static void m2() {
+		System.out.println("Rev0351: m2()");
+	}
+	
+}
+
+class Rev0352 extends Rev0351 {
+	// 程式區塊 在類別中同級
+	{
+		System.out.println("Rev0352{} 程式區塊");
+	}
+	static {
+		System.out.println("Rev0352{static} 程式區塊");
+	}	
+	
+	
+	// 建構式
+	Rev0352() {
+		System.out.println("Rev0352()");
+	}
+	
+	
+	// 方法
+	void m1() {	
+		System.out.println("Rev0352: m1()");
+	}
+	
+	static void m2() {
+		System.out.println("Rev0352: m2()");
+	}
+	
+}
