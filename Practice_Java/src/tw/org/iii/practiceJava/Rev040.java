@@ -19,11 +19,13 @@ public class Rev040 extends JFrame {
 	public Rev040() {
 		setLayout(new BorderLayout()); // setLayout的順序位置會影響後面add (先set才可add)
 		
-		myPanel = new RevMyPanel(); // 僅產生物件實體
+		// myPanel = new RevMyPanel(); // 僅產生物件實體
+		// myPanel = new RevMyPanelV2(); // 0816review改用V2版本
+		myPanel = new RevMyPanelV3(); // V3版
 		add(myPanel, BorderLayout.CENTER);
 		
 		// 滑鼠事件
-		addMouseListener(new MyClicker());
+		//addMouseListener(new MyClicker());
 		
 		// 關閉視窗 方法二
 		addWindowListener(new MyListener());	
