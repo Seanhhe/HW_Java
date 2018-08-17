@@ -93,3 +93,12 @@ public class Rev048_Stream1 {
 	}
 
 }
+
+
+/*	20180812AM1 FileInputStream_API
+ * 	
+ * 	某些方法會與不同作業系統的檔案系統有關
+ * 	課程主要介紹大部分的常用功能
+ * 	
+ * 	輸出比輸入簡單
+ */
