@@ -42,8 +42,9 @@ public class Rev052_CopyFile2 {
 		System.out.println(v1);
 		System.out.println(v2);
 		
-		// 改寫! 調整程式使其迎合超過2G以上的檔案
-		
+		//	改寫! 調整程式使其迎合超過2G以上的檔案
+		//	補充: 有時候會有狀況是因為 
+		//	當複製超過4G大小的檔案到目的地 其檔案系統是否容許(就像USB FAT32)
 		File source = new File("dir1/image.jpg");
 		final int limit = 2000000000; // 設定容器限制的大小
 		// 用三元判斷式判斷
@@ -70,3 +71,12 @@ public class Rev052_CopyFile2 {
 	}
 
 }
+
+
+/*	TODO HW: 複製整個目錄的程式
+ * 	目錄可能有多層, 要都能夠適用.
+ * 	1. 要先判斷來源是file/directory
+ * 	2. 如果是direct要列出下面有沒有東西 =>listfile() [最後一層: 就是沒有子目錄]
+ * 	3.	是目錄mkdir, 是檔案複製檔案
+ * 	*運用recursive遞迴
+ */
