@@ -14,7 +14,10 @@ import java.io.ObjectInputStream;
  * 	物件重要的東西是屬性
  * 	序列化其實主要是序列其屬性資料
  * 
- * 	多個物件也可以解序列化, 但要注意其順序也需和序列化時一樣
+ * 	多個物件(不同類別)也可以一起序列化, 但要注意其解序列化的順序也需和序列化時一樣
+ * 	A物件擁有B物件
+ * 	只要擁有的物件有實作序列化就沒有問題
+ * 	但若被序列化的屬性本身沒有實作序列化, 會有無法序列化的例外出現
  */
 
 public class Rev058_UnSerial {
@@ -28,7 +31,7 @@ public class Rev058_UnSerial {
 			System.out.println(s1.calAvg()+":"+s1.calSum());
 			
 			// 學生的腳踏車 (物件中的物件)
-			System.out.println(s1.bike.getSpeed());
+			System.out.println("學生的腳踏車:" + s1.bike.getSpeed());
 			
 			
 			// 物件二腳踏車

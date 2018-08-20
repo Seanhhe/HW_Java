@@ -17,14 +17,15 @@ import java.io.Serializable;
  * 
  * 	Bike物件--序列化-->Object
  * 	
- * 	> 如果物件中有屬性不想讓他序列化\
+ * 	> 如果物件中有屬性不想讓他序列化, 在宣告時需再其前稱加上transient
+ * 	
  */
 public class Rev057_Serial {
 
 	public static void main(String[] args) {
 		// 物件二 腳踏車
 		Reviewed_Bike b1 = new Reviewed_Bike();
-		b1.upSpeed();b1.upSpeed();b1.upSpeed();
+		b1.upSpeed();
 		System.out.println(b1.getSpeed());
 		
 		// 物件一 學生
@@ -55,7 +56,8 @@ public class Rev057_Serial {
 // 要被輸出的物件
 class Student implements Serializable {
 	// 要執行序列化的物件,需要宣告實作序列化界面
-	int ch, eng, math;
+	transient int ch;  // 宣告該屬性不執行序列化 	影響原物件, 但解序列化後會有差異
+	int eng, math;
 	
 	// 讓學生擁有腳踏車物件 Reviewed_Bike
 	Reviewed_Bike bike;
