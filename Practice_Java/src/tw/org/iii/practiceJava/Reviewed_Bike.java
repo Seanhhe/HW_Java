@@ -1,5 +1,7 @@
 package tw.org.iii.practiceJava; //執行環境所在的實體"路徑"
 
+import java.io.Serializable;
+
 /*20180729AM 物件 Bike
  * 以Bike為例建立物件
  * 這個檔案是建立Bike類別
@@ -8,7 +10,7 @@ package tw.org.iii.practiceJava; //執行環境所在的實體"路徑"
  * 
  * */
 
-public class Reviewed_Bike {
+public class Reviewed_Bike implements Serializable{ // 20180820 review 序列化
 	
 	//	宣告屬性 (宣告private限制其存取範圍)
 	double speed;

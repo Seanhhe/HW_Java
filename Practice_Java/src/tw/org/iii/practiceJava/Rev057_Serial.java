@@ -22,14 +22,27 @@ import java.io.Serializable;
 public class Rev057_Serial {
 
 	public static void main(String[] args) {
+		// 物件二 腳踏車
+		Reviewed_Bike b1 = new Reviewed_Bike();
+		b1.upSpeed();b1.upSpeed();b1.upSpeed();
+		System.out.println(b1.getSpeed());
 		
-		Student s1 = new Student(60, 65, 70);
+		// 物件一 學生
+		Student s1 = new Student(60, 65, 70, b1);
+		// 學生的腳踏車的速度 (物件擁有物件)
+		s1.bike.upSpeed(2);
 		System.out.println(s1.calAvg() + " & " + s1.calSum());
+		System.out.println(s1.bike.getSpeed());
+		
+		
+		
 		
 		try (ObjectOutputStream oout = 
 				new ObjectOutputStream(new FileOutputStream("dir2/rev57.object"))) {
 			// 輸出Student
 			oout.writeObject(s1);
+			// 輸出第二個物件
+			oout.writeObject(b1);
 			System.out.println("Save OK");
 		}catch (Exception e) {
 			System.out.println(e);
@@ -44,10 +57,14 @@ class Student implements Serializable {
 	// 要執行序列化的物件,需要宣告實作序列化界面
 	int ch, eng, math;
 	
-	public Student(int ch, int eng, int math) {
+	// 讓學生擁有腳踏車物件 Reviewed_Bike
+	Reviewed_Bike bike;
+	
+	public Student(int ch, int eng, int math, Reviewed_Bike bike) {
 		this.ch = ch;
 		this. eng = eng;
 		this.math = math;
+		this.bike = bike;
 	}
 	
 	int calSum() {
