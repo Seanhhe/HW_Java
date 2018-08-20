@@ -66,9 +66,10 @@ public class Rev048_Stream1 {
 			 * 	僅部分可行且效能上會差很多
 			 */
 			int temp; // 將資料放在這
-			byte[] b = new byte[3];  // 一次讀幾個
+			byte[] b = new byte[4096];  // 一次讀幾個
 			while (( temp = fin.read(b) ) != -1) {
 				System.out.print(new String(b, 0, temp));
+				System.out.println(temp);
 			}
 			/*	問題依然無解
 			 * 	如果今天資料檔案是中英數夾雜--依然讀取失敗
