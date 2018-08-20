@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -31,6 +30,8 @@ import javax.swing.JTextArea;
  * 	4. 事件/功能設計: 按鈕功能綁定 (柿子先挑軟的吃 程式先挑會的寫)
  * 	4-1. Open功能
  * 	4-2. ReadFile
+ * 	4-3. save功能
+ * 	4-4. saveAs
  * 
  */
 public class RevMyEditor extends JFrame{
@@ -65,7 +66,7 @@ public class RevMyEditor extends JFrame{
 		add(top, BorderLayout.NORTH);
 		
 		editor = new JTextArea();
-		//editor.setFont(new Font("Default", 15));
+		editor.setFont(new Font("Default",Font.PLAIN, 20));
 		// add(editor,BorderLayout.CENTER);
 		
 		// 讓編輯區可以捲動
@@ -87,6 +88,24 @@ public class RevMyEditor extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				saveFile();
+			}
+		});
+		
+		// newFile
+		newFile.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				newFile();				
+			}
+		});
+		
+		// saveAs
+		saveAs.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				saveAs();
 			}
 		});
 		
@@ -131,14 +150,31 @@ public class RevMyEditor extends JFrame{
 	}
 	
 	private void saveFile() {
-		try {
-			FileWriter writer = new FileWriter(nowFile);
-			editor.write(writer); // 把fileWriter寫出
-			JOptionPane.showMessageDialog(this, "儲存成功!");
-		} catch (IOException e) {
-			System.out.println(e);
+		if (nowFile != null) {
+			try {
+				FileWriter writer = new FileWriter(nowFile);
+				editor.write(writer); // 把fileWriter寫出
+				JOptionPane.showMessageDialog(this, "儲存成功!");
+			} catch (IOException e) {
+				System.out.println(e);
+			}
+		} else {
+			saveAs();
 		}
-		
+	}
+	
+	private void saveAs() {
+		JFileChooser jFileChooser = new JFileChooser("./dir1/");
+		if (jFileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+			// 抓取選擇的檔案
+			nowFile = jFileChooser.getSelectedFile();
+			saveFile();
+		}
+	}
+	
+	private void newFile() {
+		nowFile = null;
+		editor.setText("");
 	}
 	
 	public static void main(String[] args) {
