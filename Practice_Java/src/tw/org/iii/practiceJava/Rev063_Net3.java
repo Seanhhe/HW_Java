@@ -23,7 +23,7 @@ public class Rev063_Net3 {
 			DatagramPacket packet = new DatagramPacket(buf
 					, buf.length
 					, InetAddress.getByName("192.168.1.2")
-					, 9999);
+					,9999);
 			
 			//	發送封包
 			socket.send(packet);
