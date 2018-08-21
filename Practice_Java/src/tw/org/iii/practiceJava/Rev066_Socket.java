@@ -15,6 +15,8 @@ import java.net.Socket;
  * 	=> 自訂通訊協定
  * 	1024byte前為資訊, 後為內容
  * 	甚至可以隱藏特定資訊/加密 (某段資料才是真實資料)
+ * 
+ * 	
  */
 public class Rev066_Socket {
 
