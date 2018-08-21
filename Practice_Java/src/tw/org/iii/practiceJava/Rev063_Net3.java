@@ -23,13 +23,14 @@ public class Rev063_Net3 {
 			DatagramPacket packet = new DatagramPacket(buf
 					, buf.length
 					, InetAddress.getByName("192.168.1.2")
-					, 8889);
+					, 8888);
 			
 			//	發送封包
 			socket.send(packet);
 			
 			//	關閉封包
 			socket.close();
+			System.out.println("Messege Sent");
 		} catch (SocketException e) {
 			System.out.println(e);
 		} catch (UnknownHostException e) {

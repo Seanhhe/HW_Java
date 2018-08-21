@@ -3,6 +3,7 @@ package tw.org.iii.practiceJava;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
 
 /*	20180818AM1 網路基本概論 00:54:00 Brad60 (DatagramSocket 接收端)
@@ -41,7 +42,7 @@ public class Rev062_Net2 {
 		byte[] buf = new byte[1024];
 		try {
 			// 接收一次性的封包
-			DatagramSocket socket = new DatagramSocket(8889);
+			DatagramSocket socket = new DatagramSocket(8888);
 			
 			//	接收用封包
 			DatagramPacket packet = new DatagramPacket(buf, buf.length);
@@ -53,6 +54,16 @@ public class Rev062_Net2 {
 			System.out.println("After");
 			//	關閉封包
 			socket.close();
+			
+			
+			//	存取接收到的封包內容
+			byte[] data = packet.getData();
+			//	封包資料長度
+			int len = packet.getLength();
+			//	
+			int dataLen = data.length;
+			InetAddress ip = packet.getAddress();
+			System.out.println(ip.getHostAddress()+ " : "+ len + " : " + new String(data) + "封包長度: "+ dataLen);
 		} catch (SocketException e) {
 			//	SocketException | IOException 非直系血親可這樣用
 			//	例外發生: 該port號被占用
