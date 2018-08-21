@@ -42,7 +42,7 @@ public class Rev062_Net2 {
 		byte[] buf = new byte[1024];
 		try {
 			// 接收一次性的封包
-			DatagramSocket socket = new DatagramSocket(8888);
+			DatagramSocket socket = new DatagramSocket(9999);
 			
 			//	接收用封包
 			DatagramPacket packet = new DatagramPacket(buf, buf.length);

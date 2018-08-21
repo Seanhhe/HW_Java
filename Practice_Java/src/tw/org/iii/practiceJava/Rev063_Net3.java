@@ -17,13 +17,13 @@ public class Rev063_Net3 {
 
 	public static void main(String[] args) {
 		//	發送方: port號選擇any available
-		byte[] buf = "Hello, world".getBytes();
+		byte[] buf = "Hello".getBytes();
 		try {
 			DatagramSocket socket = new DatagramSocket();
 			DatagramPacket packet = new DatagramPacket(buf
 					, buf.length
 					, InetAddress.getByName("192.168.1.2")
-					, 8888);
+					, 9999);
 			
 			//	發送封包
 			socket.send(packet);
