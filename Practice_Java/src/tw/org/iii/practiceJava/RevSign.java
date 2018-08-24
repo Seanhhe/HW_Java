@@ -1,10 +1,24 @@
 package tw.org.iii.practiceJava;
 
+import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Graphics2D;
+import java.awt.Robot;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.LinkedList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /*	20180819AM1 13:00
@@ -15,7 +29,7 @@ import javax.swing.JPanel;
  * 
  */
 public class RevSign extends JFrame{
-	private JButton clear, undo;
+	private JButton clear, undo, redo, saveObject, saveJPG, loadObject;
 	private RevView myView;
 	
 	public RevSign() {
@@ -29,9 +43,18 @@ public class RevSign extends JFrame{
 		//	產出按鈕
 		clear = new JButton("清除畫面");
 		undo = new JButton("上一步");
+		redo = new JButton("重作");
+		saveJPG = new JButton("存成JPG");
+		saveObject = new JButton("存成物件");
+		loadObject = new JButton("匯入物件");
+		
 		//	把按鈕加入上半部
 		top.add(clear);
 		top.add(undo);
+		top.add(redo);
+		top.add(saveJPG);
+		top.add(saveObject);
+		top.add(loadObject);
 		
 		//	把top放到視窗的上半部
 		add(top, BorderLayout.NORTH);
@@ -42,15 +65,99 @@ public class RevSign extends JFrame{
 		//	把myView放入視窗中
 		add(myView, BorderLayout.CENTER);
 		
+		clear.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				myView.clear();
+			}
+		});
+		
+		undo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				myView.undo();
+			}
+		});
+		
+		redo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				myView.redo();
+			}
+		});
+		
+		saveJPG.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				saveJPEG();
+				myView.saveJPEG1();
+			}
+		});
+		
+		saveObject.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				saveObject();
+			}
+		});
+		
+		loadObject.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		
 		setSize(640, 480);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 	}
 	
+	// 儲存JPEG
+	private void saveJPEG() {
+		// 第一招
+		// https://stackoverflow.com/questions/19621105/save-image-from-jpanel-after-draw
+		// 利用螢幕截圖的方法
+		BufferedImage imagebuf = null;
+		try {
+			imagebuf = new Robot().createScreenCapture(myView.bounds());
+		} catch (AWTException e) {
+			System.out.println(e);
+		}
+		
+		Graphics2D graphics2D = imagebuf.createGraphics();
+		myView.paint(graphics2D);	// 為什麼要再畫一次? => 儲存繪圖的部分, 沒有的話是擷取視窗截圖
+		try {
+			ImageIO.write(imagebuf, "jpeg", new File("dir2/save1.jpeg"));
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+	}
 	
-	
-	
+	// 將簽名物件序列化輸出
+	private void saveObject() {
+		LinkedList<LinkedList<RevPoint>> lines = myView.getLines();
+		
+		try {
+			ObjectOutputStream oout = new ObjectOutputStream(new FileOutputStream("dir2/sign.obj"));
+			oout.writeObject(lines);
+			oout.flush();
+			oout.close();
+			JOptionPane.showMessageDialog(this, "儲存成功");
+		} catch (FileNotFoundException e) {
+			System.out.println(e);
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+		
+	}
 	
 	public static void main(String[] args) {
 		new RevSign();
