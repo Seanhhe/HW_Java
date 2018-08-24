@@ -168,11 +168,15 @@ public class RevView extends JPanel{
 		}
 	}
 	
+	// 傳到外部讓RevSign可以執行物件的序列化
 	public LinkedList<LinkedList<RevPoint>> getLines() {
-		// 傳到外部讓RevSign儲存物件
 		return lines;
 	}
 	
+	// 讓解序列化的物件可以讀進來
+	public void setLines(LinkedList<LinkedList<RevPoint>> lines) {
+		this.lines = lines;
+	}
 	
 }
 

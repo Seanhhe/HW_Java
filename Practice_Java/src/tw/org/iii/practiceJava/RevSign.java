@@ -9,9 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 
@@ -110,7 +112,7 @@ public class RevSign extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				loadObject();
 			}
 		});
 		
@@ -143,8 +145,10 @@ public class RevSign extends JFrame{
 	
 	// 將簽名物件序列化輸出
 	private void saveObject() {
+		// 取得LL物件
 		LinkedList<LinkedList<RevPoint>> lines = myView.getLines();
 		
+		// 輸出
 		try {
 			ObjectOutputStream oout = new ObjectOutputStream(new FileOutputStream("dir2/sign.obj"));
 			oout.writeObject(lines);
@@ -154,6 +158,25 @@ public class RevSign extends JFrame{
 		} catch (FileNotFoundException e) {
 			System.out.println(e);
 		} catch (IOException e) {
+			System.out.println(e);
+		}
+		
+	}
+	
+	// 將已經序列化的簽名物件讀入
+	private void loadObject() {
+		try {
+			ObjectInputStream oin = new ObjectInputStream(new FileInputStream("dir2/sign.obj"));
+			
+			//	 把收到的東西轉回來
+			LinkedList<LinkedList<RevPoint>> input = (LinkedList<LinkedList<RevPoint>>)oin.readObject();
+			
+			oin.close();
+			
+			// 把讀出的內容放回myView
+			myView.setLines(input); 
+			myView.repaint();
+		} catch (Exception e) {
 			System.out.println(e);
 		}
 		
