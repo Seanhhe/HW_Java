@@ -14,7 +14,8 @@ import javax.swing.JLabel;
  * 	1. 設計視窗畫面排版
  * 	2. 建立視窗畫面 JFrame, JLabel(文字跑道)
  * 	3. 設計上面賽跑的馬 (跑在哪裡=>跑道/ 有生命的馬/ 很多匹馬[陣列])
- * 	
+ * 	4. 每回合如何執行
+ * 	5. 
  */
 
 public class RevRacing extends JFrame{
