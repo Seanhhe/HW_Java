@@ -1,5 +1,6 @@
 package tw.org.iii.practiceJava;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -32,6 +33,8 @@ public class Rev087_TimeDate {
 		// getInstance()
 		Calendar calendar = Calendar.getInstance();
 		System.out.println(calendar); // 不易閱讀
+		
+		//
 		
 		
 	}
